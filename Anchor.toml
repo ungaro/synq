@@ -16,5 +16,7 @@ wallet = "~/.config/solana/id.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
-multisynq-demo = "ts-node --project ./tsconfig.json scripts/multisynq-demo.ts"
+multisynq-demo = "ts-node scripts/multisynq-demo.ts"
+burn-mint = "ts-node  scripts/burn-mint.ts"
+adaptive-mesh = "ts-node  scripts/adaptive-mesh-demo.ts"
 
