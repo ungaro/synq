@@ -32,7 +32,7 @@ To install and set up the project, follow these steps:
 
 3. **Install Anchor:**
     ```sh
-    cargo install --git https://github.com/project-serum/anchor --tag v0.24.2 anchor-cli --locked
+    cargo install --git https://github.com/project-serum/anchor --tag v0.30.1 anchor-cli --locked
     ```
 
 ## Usage
@@ -57,6 +57,13 @@ To use this program, follow these steps:
 4. **Run the client:**
     You can interact with the deployed program using the Anchor client or other tools such as the Solana CLI or a custom front-end application.
 
+    ```sh
+    anchor run burn-mint 
+    anchor run multisynq-demo
+    anchor run adaptive-mesh
+    ```
+    burn-mint and adaptive-mesh are (WIP)
+    
 ## Building and Deploying
 
 To build and deploy the program to the Solana blockchain, use the following commands:
