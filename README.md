@@ -1,3 +1,7 @@
+
+### Disclaimer
+Any resemblance to real-life products is purely coincidental, and this repository is solely for personal learning purposes.
+
 # Anchor Program
 
 This repository contains a Solana program written using the Anchor framework. The Anchor framework provides a convenient way to build secure and maintainable Solana programs.
