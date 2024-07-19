@@ -16,6 +16,67 @@ This repository contains a Solana program written using the Anchor framework. Th
 
 This project is a Solana program developed using the Anchor framework. It demonstrates the basic structure and functionality of an Anchor-based Solana program. The program is designed to interact with clients and other programs on the Solana blockchain.
 
+
+
+flowchart TD
+  synchronizers[[Synchronizers]]
+  router[[Session Router]]
+  storage[[Distributed Storage]]
+  verify[Verifier]
+  rewards[Rewards Calculator]
+  oracle_db[[Oracle Database]]
+  rewards_oracle[[Rewards Oracle]]
+  solana[[Solana Blockchain]]
+  session_registry[[Session Registry]]
+  client_apps[[Client Apps]]
+  synchronizers --> router
+  router --> storage
+  storage --> verify
+  verify --valid sessions--> storage
+  storage --> rewards
+  rewards --> oracle_db
+  oracle_db --> rewards_oracle
+  rewards_oracle --Synchronizer Lifetime Rewards--> solana
+  router --> session_registry
+  client_apps --> synchronizers
+
+
+flowchart TD
+  coder_app[Coder App]
+  onboarding[Onboarding Server]
+  crank(((Rewards Crank)))
+  synq_price_oracle[[SYNQ Price Oracle]]
+  oracles[[Data Token Rewards Oracle]]
+  wallet_app[Wallet App]
+  oracles --set and distribute rewards tx--> wallet_app
+  wallet_app --> lazy_distributor
+  subgraph Solana
+    manager[Synchronizer Manager]
+    data_tokens[Data Tokens]
+    synq_rewards_escrow{{SYNQ Escrow}}
+    synchronizers{{Synchronizer NFTs}}
+    multisynq_dao[Multisynq DAO]
+    lazy_distributor[Lazy Distributor]
+    treasury_management[Treasury Management]
+    user_wallet{{Synchronizer Owner Wallet}}
+    treasury{{DAO Treasury}}
+  end
+  data_tokens --Data Tokens Burned--> multisynq_dao
+  onboarding --register synchronizer, assert location txs--> coder_app
+  coder_app --register synchronizer, assert location--> manager
+  synq_price_oracle --SYNQ Price--> data_tokens
+  synq_rewards_escrow --> lazy_distributor
+  manager --Burn Data Tokens--> data_tokens
+  manager --Create--> synchronizers
+  manager --Synchronizer Count--> multisynq_dao
+  crank --issue rewards--> multisynq_dao
+  multisynq_dao --SYNQ--> synq_rewards_escrow
+  multisynq_dao --set expiry--> treasury_management
+  multisynq_dao --mint_synq--> treasury
+  treasury -->  treasury_management
+  synchronizers --> lazy_distributor
+  lazy_distributor --SYNQ--> user_wallet
+
 ## Installation
 
 To install and set up the project, follow these steps:
