@@ -17,7 +17,7 @@ This repository contains a Solana program written using the Anchor framework. Th
 This project is a Solana program developed using the Anchor framework. It demonstrates the basic structure and functionality of an Anchor-based Solana program. The program is designed to interact with clients and other programs on the Solana blockchain.
 
 
-
+```mermaid
 flowchart TD
   synchronizers[[Synchronizers]]
   router[[Session Router]]
@@ -39,8 +39,9 @@ flowchart TD
   rewards_oracle --Synchronizer Lifetime Rewards--> solana
   router --> session_registry
   client_apps --> synchronizers
+```
 
-
+```mermaid
 flowchart TD
   coder_app[Coder App]
   onboarding[Onboarding Server]
@@ -76,6 +77,7 @@ flowchart TD
   treasury -->  treasury_management
   synchronizers --> lazy_distributor
   lazy_distributor --SYNQ--> user_wallet
+```
 
 ## Installation
 
